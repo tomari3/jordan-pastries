@@ -140,7 +140,6 @@ table {
 .app-wrapper {
   display: grid;
   grid-template-rows: 70px 1fr;
-  gap: calc(100vw - 90vmax);
 }
 
 .app_header {
@@ -324,4 +323,53 @@ table {
 }
 .app_products_gallery_products_load-more button:active {
   transform: translateY(2px);
+}
+
+.app_home {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15vw;
+}
+
+.app_home_greeting a {
+  text-decoration: none;
+  color: var(--dom);
+  font-weight: 600;
+}
+
+.app_home_greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 5vh 5vw;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 1rem;
+}
+
+.app_home_greeting_links {
+  padding: 2vh 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  font-size: 0.9rem;
+}
+
+.app_home_arrow {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 5vw;
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 100%;
+  text-decoration: none;
+  color: var(--bg);
+  font-size: 1.5rem;
+  font-weight: 600;
 }
