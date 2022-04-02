@@ -9,10 +9,14 @@ const ProductsCard = ({ title, image, authors }) => {
   });
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <div>{authorsList}</div>
-      <img src={image} height={100} width={100} />
+    <div className="app_products_gallery_products_product">
+      <div className="app_products_gallery_products_product_image">
+        <img src={image} />
+      </div>
+      <div className="app_products_gallery_products_product_text">
+        <h1>{title}</h1>
+        <div>{authorsList}</div>
+      </div>
     </div>
   );
 };
@@ -24,7 +28,7 @@ ProductsCard.propTypes = {
 };
 
 const Input = ({ inputFunc }) => {
-  return <input placeholder="Books" onChange={inputFunc} />;
+  return <input placeholder="&nbsp;" onChange={inputFunc} />;
 };
 
 Input.propTypes = {
@@ -72,8 +76,8 @@ const ProductsGallery = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="app_products_gallery">
+      <div className="app_products_gallery_search-bar">
         <Input
           placeholder="Books"
           inputFunc={(value) => {
@@ -85,7 +89,7 @@ const ProductsGallery = () => {
         />
       </div>
 
-      <div>
+      <div className="app_products_gallery_products">
         {data.map((e) => {
           return (
             <ProductsCard
@@ -122,7 +126,7 @@ const ProductsFilterSort = () => {
 
 const ProductsPrompt = ({ headline, subHeadline }) => {
   return (
-    <div>
+    <div className="app_products_prompt-wrapper">
       <h1>{headline}</h1>
       <p>{subHeadline}</p>
     </div>
@@ -136,14 +140,14 @@ ProductsPrompt.propTypes = {
 
 const Products = () => {
   return (
-    <main data-testid="products">
-      <div>
+    <main data-testid="products" className="app_products">
+      <div className="app_products_prompt">
         <ProductsPrompt
           headline={"Books"}
           subHeadline={"Search by title, author, year or even prizes"}
         />
       </div>
-      <div>
+      <div className="app_products_gallery_wrapper">
         {/* <ProductsFilterSort /> */}
         <ProductsGallery />
       </div>

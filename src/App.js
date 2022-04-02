@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header.js";
 import Home from "./components/content/Home";
 import Products from "./components/content/Products";
+import "./app.css";
 
 function App() {
   return (
-    <div>
+    <div className="app-wrapper">
       <Router>
         <Header />
         <Routes>

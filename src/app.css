@@ -1,0 +1,273 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,200&display=swap");
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  --bg: white;
+  --dom: #4281a4;
+  --accent: #fe938c;
+  --h1: #ead2ac;
+}
+
+.app-wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  gap: calc(100vw - 90vmax);
+}
+
+.app_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app_header_nav {
+  background-color: var(--dom);
+  color: var(--h1);
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app_header_nav_left {
+  display: flex;
+  gap: clamp(2vw, 5vw, 10vw);
+}
+
+.app_header_nav {
+  padding: 0 clamp(4vw, 15vw, 18vw);
+}
+
+.app_header_nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app_products {
+  display: grid;
+  grid-template-rows: minmax(250px, 35vh) 1fr;
+  gap: calc(100vw - 90vmax);
+}
+
+.app_products_prompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.app_products_prompt h1 {
+  font-size: 20vw;
+  font-weight: 600;
+  padding-bottom: 3vh;
+}
+
+.app_products_gallery {
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  gap: 10vh;
+}
+
+.app_products_gallery_search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.app_products_gallery_search-bar input {
+  height: 10vmin;
+  width: 77vw;
+  padding: 0 3vw;
+  font-size: 4vmax;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: none;
+  border-bottom: 4px solid var(--accent);
+}
+
+.app_products_gallery_search-bar input::placeholder {
+  border-left: 4px solid var(--accent);
+}
+.app_products_gallery_search-bar input::selection {
+  height: 110%;
+}
+
+.app_products_gallery_search-bar input:focus {
+  outline: 0;
+  border-color: var(--dom);
+}
+
+.app_products_gallery_products {
+  display: grid;
+  padding: 0 10vw 10vh;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-rows: repeat(3, auto);
+  justify-content: center;
+  gap: 10vmin;
+}
+
+.app_products_gallery_products_product {
+  /* background-color: #4281a4; */
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.app_products_gallery_products_product_text {
+  /* background-color: #4281a4; */
+  display: grid;
+  gap: 2vh;
+}
+
+.app_products_gallery_products_product h1 {
+  width: 200px;
+  font-weight: 600;
+}
+
+.app_products_gallery_products_product p {
+  padding-left: 1vw;
+}
+
+.app_products_gallery_products_product_image {
+  width: 150px;
+  height: 250px;
+}
+
+.app_products_gallery_products_product img {
+  height: auto;
+  width: 100%;
+  object-fit: scale-down;
+}
