@@ -62,7 +62,6 @@ const ProductsGallery = () => {
             )}&author_year_end=${encodeURI(end)}&topic=${encodeURI(topic)}`
           );
           setData(response.results);
-          console.log(data);
           setNextApi(response.next);
           if (response.next === null) {
             setIsNext(false);
@@ -164,9 +163,15 @@ const ProductsGallery = () => {
       </div>
       <div>
         {data.length !== 0 ? (
-          <div className="app_products_gallery_products_load-more">
-            <button onClick={fetchMore}>Load More</button>
-          </div>
+          isNext ? (
+            <div className="app_products_gallery_products_load-more">
+              <button onClick={fetchMore}>Load More</button>
+            </div>
+          ) : (
+            <div className="app_products_gallery_products_load-more">
+              That&apos;s all
+            </div>
+          )
         ) : (
           <div className="app_products_gallery_products_load-more">
             Nothing Here
