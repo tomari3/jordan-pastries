@@ -61,8 +61,8 @@ const ProductsGallery = () => {
               start
             )}&author_year_end=${encodeURI(end)}&topic=${encodeURI(topic)}`
           );
-          console.log(response);
           setData(response.results);
+          console.log(data);
           setNextApi(response.next);
           if (response.next === null) {
             setIsNext(false);
@@ -116,7 +116,7 @@ const ProductsGallery = () => {
 
   const fetchMore = async () => {
     if (isNext) {
-      const response = await fetchBooks(nextApi);
+      const response = await fetchAPI(nextApi);
       const newData = [...data, ...response.results];
       if (response.next === null) {
         setIsNext(false);
@@ -146,9 +146,7 @@ const ProductsGallery = () => {
             />
             <input name="topic" placeholder="topic" onChange={handleInput} />
           </div>
-          <div className="app_products_gallery_filter-sort_sort">
-            <span>sort</span>
-          </div>
+          <div className="app_products_gallery_filter-sort_sort"></div>
         </div>
       </div>
 
@@ -163,6 +161,17 @@ const ProductsGallery = () => {
             />
           );
         })}
+      </div>
+      <div>
+        {data.length !== 0 ? (
+          <div className="app_products_gallery_products_load-more">
+            <button onClick={fetchMore}>Load More</button>
+          </div>
+        ) : (
+          <div className="app_products_gallery_products_load-more">
+            Nothing Here
+          </div>
+        )}
       </div>
     </div>
   );

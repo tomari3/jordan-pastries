@@ -196,8 +196,7 @@ table {
 
 .app_products_gallery {
   display: grid;
-  grid-template-rows: 130px 1fr;
-  gap: 10vh;
+  grid-template-rows: 130px 1fr 200px;
 }
 
 .flex-column {
@@ -222,14 +221,17 @@ table {
   text-transform: capitalize;
   border: none;
   border-bottom: 4px solid transparent;
+  transition: all 0.5s ease;
 }
 .app_products_gallery_search-bar input::placeholder {
   padding: 0 2vw;
   border-left: 4px solid var(--accent);
+  transition: all 1s ease;
 }
 
 .app_products_gallery_search-bar input:focus::placeholder {
   color: transparent;
+  border: 0;
 }
 
 .app_products_gallery_search-bar input:focus {
@@ -249,10 +251,11 @@ table {
   gap: 2vw;
 }
 .app_products_gallery_filter-sort_filter input {
-  width: calc(100vw / 15);
+  width: 60px;
   border: 0;
   border-bottom: 1px solid transparent;
   padding: 5px 3px;
+  transition: all 0.3s ease-in-out;
 }
 .app_products_gallery_filter-sort_filter input:focus {
   outline: 0;
@@ -261,22 +264,22 @@ table {
 
 .app_products_gallery_products {
   display: grid;
-  padding: 0 10vw 10vh;
+  padding: 10vw;
   grid-template-columns: repeat(auto-fit, 250px);
   grid-template-rows: repeat(3, auto);
   justify-content: center;
-  gap: 10vmin;
+  gap: 0 10vmin;
 }
 
 .app_products_gallery_products_product {
-  /* background-color: #4281a4; */
   display: flex;
   flex-direction: column;
   gap: 1vh;
+  padding: 5vh 0;
+  border-bottom: 1px solid var(--h1);
 }
 
 .app_products_gallery_products_product_text {
-  /* background-color: #4281a4; */
   display: grid;
   gap: 2vh;
 }
@@ -299,4 +302,26 @@ table {
   height: auto;
   width: 100%;
   object-fit: scale-down;
+}
+
+.app_products_gallery_products_load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app_products_gallery_products_load-more button {
+  border: 0;
+  border-bottom: 0px solid var(--h1);
+  background-color: transparent;
+  color: var(--dom);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.app_products_gallery_products_load-more button:hover {
+  border-bottom-width: 1px;
+}
+.app_products_gallery_products_load-more button:active {
+  transform: translateY(2px);
 }
