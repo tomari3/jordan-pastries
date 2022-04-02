@@ -28,7 +28,7 @@ ProductsCard.propTypes = {
 };
 
 const Input = ({ inputFunc }) => {
-  return <input placeholder="&nbsp;" onChange={inputFunc} />;
+  return <input name="search-bar" placeholder="Search" onChange={inputFunc} />;
 };
 
 Input.propTypes = {
@@ -39,9 +39,15 @@ const ProductsGallery = () => {
   const [isNext, setIsNext] = useState(true);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [topic, setTopic] = useState("");
   const [nextApi, setNextApi] = useState(
-    `${apiUrl}?mime_type=image&page=${1}
-    )}&search=${encodeURI(search)}`
+    `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+      search
+    )}&author_year_start=${encodeURI(start)}&author_year_end=${encodeURI(
+      end
+    )}&topic=${encodeURI(topic)}`
   );
 
   useEffect(() => {
@@ -49,7 +55,11 @@ const ProductsGallery = () => {
       () =>
         (async function () {
           const response = await fetchAPI(
-            `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(search)}`
+            `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+              search
+            )}&author_year_start=${encodeURI(
+              start
+            )}&author_year_end=${encodeURI(end)}&topic=${encodeURI(topic)}`
           );
           console.log(response);
           setData(response.results);
@@ -61,7 +71,48 @@ const ProductsGallery = () => {
       500
     );
     return () => clearTimeout(timeOutId);
-  }, [search]);
+  }, [search, start, end, topic]);
+
+  const handleInput = (value) => {
+    switch (value.target.name) {
+      case "search-bar":
+        setSearch(value.target.value);
+        setNextApi(
+          `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+            value.target.value
+          )}&author_year_start=${encodeURI(start)}&author_year_end=${encodeURI(
+            end
+          )}&topic=${encodeURI(topic)}`
+        );
+      case "from-year":
+        setStart(value.target.value);
+        setNextApi(
+          `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+            search
+          )}&author_year_start=${encodeURI(
+            value.target.value
+          )}&author_year_end=${encodeURI(end)}&topic=${encodeURI(topic)}`
+        );
+      case "to-year":
+        setEnd(value.target.value);
+        setNextApi(
+          `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+            search
+          )}&author_year_start=${encodeURI(start)}&author_year_end=${encodeURI(
+            value.target.value
+          )}&topic=${encodeURI(topic)}`
+        );
+      case "topic":
+        setTopic(value.target.value);
+        setNextApi(
+          `${apiUrl}?mime_type=image&page=${1}&search=${encodeURI(
+            search
+          )}&author_year_start=${encodeURI(start)}&author_year_end=${encodeURI(
+            end
+          )}&topic=${encodeURI(value.target.value)}`
+        );
+    }
+  };
 
   const fetchMore = async () => {
     if (isNext) {
@@ -77,16 +128,28 @@ const ProductsGallery = () => {
 
   return (
     <div className="app_products_gallery">
-      <div className="app_products_gallery_search-bar">
-        <Input
-          placeholder="Books"
-          inputFunc={(value) => {
-            setSearch(value.target.value);
-            setNextApi(
-              `${apiUrl}?page=${1}&search=${encodeURI(value.target.value)}`
-            );
-          }}
-        />
+      <div className="flex-column">
+        <div className="app_products_gallery_search-bar">
+          <Input placeholder="Books" inputFunc={handleInput} />
+        </div>
+        <div className="app_products_gallery_filter-sort">
+          <div className="app_products_gallery_filter-sort_filter">
+            <input
+              name="from-year"
+              placeholder="from year"
+              onChange={handleInput}
+            />
+            <input
+              name="to-year"
+              placeholder="to year"
+              onChange={handleInput}
+            />
+            <input name="topic" placeholder="topic" onChange={handleInput} />
+          </div>
+          <div className="app_products_gallery_filter-sort_sort">
+            <span>sort</span>
+          </div>
+        </div>
       </div>
 
       <div className="app_products_gallery_products">
@@ -100,25 +163,6 @@ const ProductsGallery = () => {
             />
           );
         })}
-      </div>
-    </div>
-  );
-};
-
-const ProductsFilterSort = () => {
-  return (
-    <div>
-      <div>
-        <ul>
-          <li>filter</li>
-          <li>filter</li>
-          <li>filter</li>
-          <li>filter</li>
-          <li>filter</li>
-        </ul>
-      </div>
-      <div>
-        <span>sort</span>
       </div>
     </div>
   );
@@ -148,7 +192,6 @@ const Products = () => {
         />
       </div>
       <div className="app_products_gallery_wrapper">
-        {/* <ProductsFilterSort /> */}
         <ProductsGallery />
       </div>
     </main>
