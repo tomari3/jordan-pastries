@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { item } from "./example";
 import PropTypes from "prop-types";
 import { fetchAPI } from "../../fetchAPI";
 import { apiUrl } from "../../constants";
