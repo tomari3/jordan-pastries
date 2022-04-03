@@ -14,7 +14,7 @@ const Home = ({}) => {
         <blockquote>
           Project Gutenberg is a library of over 60,000 free eBooks Choose among
           free epub and Kindle eBooks, download them or read them online. You
-          will find the world’s great literature here, with focus on older works
+          will find the worlds great literature here, with focus on older works
           for which U.S. copyright has expired. Thousands of volunteers
           digitized and diligently proofread the eBooks, for you to enjoy.
         </blockquote>

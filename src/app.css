@@ -137,7 +137,25 @@ table {
   --h1: #ead2ac;
 }
 
+#root {
+  display: flex;
+}
+
+.cart-wrapper {
+  height: 100vh;
+  width: 0%;
+  background-color: var(--bg);
+  transition: all 0.6s ease-in-out;
+}
+
+.cart-wrapper.show {
+  transition: all 0.6s ease-in-out;
+  width: clamp(400px, 50%, 50%);
+  background-color: var(--accent);
+}
+
 .app-wrapper {
+  flex: 1 1 auto;
   display: grid;
   grid-template-rows: 70px 1fr;
 }
@@ -151,22 +169,22 @@ table {
 .app_header_nav {
   background-color: var(--dom);
   color: var(--h1);
-  font-size: 1rem;
   font-weight: 600;
   flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .app_header_nav_left {
   display: flex;
-  gap: clamp(2vw, 5vw, 10vw);
+  gap: clamp(2%, 5%, 10%);
 }
 
 .app_header_nav {
-  padding: 0 clamp(4vw, 15vw, 18vw);
+  padding: 0 clamp(4%, 15%, 18%);
 }
 
 .app_header_nav a {
@@ -174,10 +192,24 @@ table {
   text-decoration: none;
 }
 
+.app_header_nav button {
+  background-color: transparent;
+  border: 0;
+  border-radius: 1rem;
+  padding: 5px 10px;
+  background-color: var(--dom);
+  color: var(--h1);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
 .app_products {
   display: grid;
-  grid-template-rows: minmax(250px, 35vh) 1fr;
-  gap: calc(100vw - 90vmax);
+  grid-template-rows: minmax(300px, 50vh) 1fr;
 }
 
 .app_products_prompt {
@@ -185,17 +217,18 @@ table {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 5vh 0;
 }
 
 .app_products_prompt h1 {
-  font-size: 20vw;
+  /* font-size: 10vmin; */
   font-weight: 600;
-  padding-bottom: 3vh;
+  padding: 3vh 0;
 }
 
 .app_products_gallery {
   display: grid;
-  grid-template-rows: 130px 1fr 200px;
+  grid-template-rows: auto 1fr 200px;
 }
 
 .flex-column {
@@ -213,8 +246,8 @@ table {
 
 .app_products_gallery_search-bar input {
   height: 10vmin;
-  width: 77vw;
-  padding: 0 3vw;
+  width: 77%;
+  padding: 0 3%;
   font-size: 4vmax;
   font-weight: 600;
   text-transform: capitalize;
@@ -223,7 +256,7 @@ table {
   transition: all 0.5s ease;
 }
 .app_products_gallery_search-bar input::placeholder {
-  padding: 0 2vw;
+  padding: 0 2%;
   border-left: 4px solid var(--accent);
   transition: all 1s ease;
 }
@@ -242,12 +275,12 @@ table {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  padding: 1vh 5vw 0;
+  padding: 1vh 5% 0;
 }
 .app_products_gallery_filter-sort_filter {
   display: flex;
   justify-content: space-between;
-  gap: 2vw;
+  gap: 2%;
 }
 .app_products_gallery_filter-sort_filter input {
   width: 60px;
@@ -263,7 +296,7 @@ table {
 
 .app_products_gallery_products {
   display: grid;
-  padding: 10vw;
+  padding: 0 10%;
   grid-template-columns: repeat(auto-fit, 250px);
   grid-template-rows: repeat(3, auto);
   justify-content: center;
@@ -289,7 +322,7 @@ table {
 }
 
 .app_products_gallery_products_product p {
-  padding-left: 1vw;
+  padding-left: 1%;
 }
 
 .app_products_gallery_products_product_image {
@@ -330,7 +363,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 15vw;
+  padding: 0 15%;
 }
 
 .app_home_greeting a {
@@ -343,7 +376,7 @@ table {
   display: flex;
   flex-direction: column;
   gap: 2vh;
-  padding: 5vh 5vw;
+  padding: 5vh 5%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 1rem;
 }
@@ -353,18 +386,18 @@ table {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 3vw;
+  gap: 3%;
   font-size: 0.9rem;
 }
 
 .app_home_arrow {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 5vw;
+  right: 5%;
   background-color: var(--accent);
   border: 1px solid var(--accent);
   border-radius: 100%;
@@ -372,4 +405,25 @@ table {
   color: var(--bg);
   font-size: 1.5rem;
   font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+.app_home_arrow:hover {
+  transition: all 0.5s ease;
+  outline: 1px solid var(--accent);
+  outline-offset: 5px;
+  transform: translateX(-1%);
+}
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+blockquote:before {
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
 }
