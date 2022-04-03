@@ -2,29 +2,38 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { fetchAPI } from "../../fetchAPI";
 import { apiUrl } from "../../constants";
+import { Link } from "react-router-dom";
 
-const ProductsCard = ({ title, image, authors }) => {
-  const authorsList = authors.map((author, i) => {
+const cart = [];
+
+const ProductsCard = ({ item }) => {
+  const authorsList = item.authors.map((author, i) => {
     return <p key={i}>{author.name}</p>;
   });
 
   return (
     <div className="app_products_gallery_products_product">
       <div className="app_products_gallery_products_product_image">
-        <img src={image} />
+        <img src={item.formats["image/jpeg"]} />
       </div>
       <div className="app_products_gallery_products_product_text">
-        <h1>{title}</h1>
+        <h1>
+          <Link to={`/products/${item.id}`}>{item.title}</Link>
+        </h1>
         <div>{authorsList}</div>
       </div>
+      {/* <div className="app_products_gallery_products_product_btns">
+        <button>+</button>
+        <span>0</span>
+        <button>-</button>
+        <button>add</button>
+      </div> */}
     </div>
   );
 };
 
 ProductsCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  authors: PropTypes.array,
+  item: PropTypes.object.isRequired,
 };
 
 const Input = ({ inputFunc }) => {
@@ -151,14 +160,7 @@ const ProductsGallery = () => {
 
       <div className="app_products_gallery_products">
         {data.map((e) => {
-          return (
-            <ProductsCard
-              key={e.id}
-              title={e.title}
-              authors={e.authors}
-              image={e.formats["image/jpeg"]}
-            />
-          );
+          return <ProductsCard key={e.id} item={e} />;
         })}
       </div>
       <div>
@@ -173,9 +175,7 @@ const ProductsGallery = () => {
             </div>
           )
         ) : (
-          <div className="app_products_gallery_products_load-more">
-            Nothing Here
-          </div>
+          <div className="app_products_gallery_products_load-more">loading</div>
         )}
       </div>
     </div>

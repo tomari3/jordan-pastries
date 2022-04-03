@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 const Cart = ({ show }) => {
   return (
     <div className={`cart-wrapper ${show}`}>
-      {show ? (
-        <div className="cart_header">
-          <h1>Cart</h1>
-        </div>
-      ) : null}
+      {show ? <div className="cart_header"></div> : null}
     </div>
   );
 };

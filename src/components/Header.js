@@ -16,9 +16,6 @@ const Header = ({ func }) => {
             </Link>
           </div>
           <div className="app_header_nav_right">
-            {/* <Link className="app_header_nav_cart" to="/cart">
-            Cart
-          </Link> */}
             <button onClick={func}>Library</button>
           </div>
         </nav>

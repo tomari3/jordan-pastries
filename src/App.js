@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import Home from "./components/content/Home";
 import Products from "./components/content/Products";
 import { Cart } from "./components/content/Cart.js";
+import { Books } from "./components/content/Books";
 import { useState } from "react";
 import "./app.css";
 
@@ -18,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
-            {/* <Route path="/messages/:id" element={<Book />} /> */}
+            <Route path="/products/:id" element={<Books />} />
           </Routes>
         </Router>
       </div>
